@@ -29,7 +29,10 @@
   </extensions>
 
   <actions>
-    <!-- Add your actions here -->
+      <group id="xtras" text="_xtras" description="xtras">
+          <add-to-group group-id="MainMenu" anchor="last" />
+          <action id="Random Background Image" class="RandomBackground" text="_Random Background Image" />
+      </group>
   </actions>
 
 </idea-plugin>
