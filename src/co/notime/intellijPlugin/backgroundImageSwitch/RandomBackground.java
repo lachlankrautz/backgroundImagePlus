@@ -1,3 +1,5 @@
+package co.notime.intellijPlugin.backgroundImageSwitch;
+
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;

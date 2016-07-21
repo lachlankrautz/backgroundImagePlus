@@ -1,17 +1,15 @@
 <idea-plugin version="2">
-  <id>com.your.company.unique.plugin.id</id>
-  <name>Plugin display name here</name>
+  <id>co.notime.intellijPlugin.backgroundImageSwitch</id>
+  <name>Background Image Switch</name>
   <version>1.0</version>
-  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+  <vendor email="lachlan.krautz@gmail.com" url="http://github.com/lachlankrautz">Lachlan Krautz</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      Set the editor background to a random picture from a folder.<br>
     ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+      Added test menu item
     ]]>
   </change-notes>
 
@@ -31,7 +29,7 @@
   <actions>
       <group id="xtras" text="_xtras" description="xtras">
           <add-to-group group-id="MainMenu" anchor="last" />
-          <action id="Random Background Image" class="RandomBackground" text="_Random Background Image" />
+          <action id="Random Background Image" class="co.notime.intellijPlugin.backgroundImageSwitch.RandomBackground" text="_Random Background Image" />
       </group>
   </actions>
 
