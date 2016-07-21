@@ -1,10 +1,16 @@
 package co.notime.intellijPlugin.backgroundImageSwitch;
 
+import com.intellij.ide.util.PropertiesComponent;
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
+import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.PlatformDataKeys;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
+import com.intellij.openapi.wm.impl.IdeBackgroundUtil;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Author: Lachlan Krautz
@@ -18,16 +24,54 @@ public class RandomBackground extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        Project project = e.getData(PlatformDataKeys.PROJECT);
-        String txt = Messages.showInputDialog(
-                project,
-                "What is your name?",
-                "Input Your Name",
-                Messages.getQuestionIcon());
-        Messages.showMessageDialog(
-                project,
-                "Hello, " + txt + "!\n I am glad to see you.",
-                "Information",
-                Messages.getInformationIcon());
+        PropertiesComponent prop = PropertiesComponent.getInstance();
+        String folder = prop.getValue(SetImageFolder.FOLDER);
+        if (folder == null) {
+            Notification n = new Notification(
+                    "extras",
+                    "Error",
+                    "Image folder not set",
+                    NotificationType.ERROR);
+            Notifications.Bus.notify(n);
+            return;
+        }
+        String image = getRandomImage(folder);
+        if (image == null) {
+            Notification n = new Notification(
+                    "extras",
+                    "Error",
+                    "Image not found",
+                    NotificationType.ERROR);
+            Notifications.Bus.notify(n);
+            return;
+        }
+        prop.setValue(IdeBackgroundUtil.EDITOR_PROP, image);
+        IdeBackgroundUtil.repaintAllWindows();
     }
+
+    private String getRandomImage (String folder) {
+        List<String> images = new ArrayList<String>();
+        collectImages(images, folder);
+        Random randomGenerator = new Random();
+        int index = randomGenerator.nextInt(images.size());
+        return images.get(index);
+    }
+
+    private void collectImages (List<String> images, String folder) {
+        File root   = new File(folder);
+        File[] list = root.listFiles();
+        if (list == null) {
+            return;
+        }
+
+        for (File f : list) {
+            if (f.isDirectory()) {
+                collectImages(images, f.getAbsolutePath());
+            }
+            else {
+                images.add(f.getAbsolutePath());
+            }
+        }
+    }
+
 }

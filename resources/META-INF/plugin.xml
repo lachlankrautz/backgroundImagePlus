@@ -27,9 +27,11 @@
   </extensions>
 
   <actions>
-      <group id="xtras" text="_xtras" description="xtras">
+      <group id="extras" text="Extras" description="Extras">
           <add-to-group group-id="MainMenu" anchor="last" />
-          <action id="Random Background Image" class="co.notime.intellijPlugin.backgroundImageSwitch.RandomBackground" text="_Random Background Image" />
+          <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction" text="_Set Background Image" />
+          <action id="setImageFolder" class="co.notime.intellijPlugin.backgroundImageSwitch.SetImageFolder" text="Set Image Folder" />
+          <action id="randomBackgroundImage" class="co.notime.intellijPlugin.backgroundImageSwitch.RandomBackground" text="_Random Background Image" />
       </group>
   </actions>
 
