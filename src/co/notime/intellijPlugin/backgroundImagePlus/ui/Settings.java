@@ -16,7 +16,7 @@ import java.io.File;
  */
 public class Settings implements Configurable {
 
-    private static final String FOLDER = "BackgroundImagesFolder";
+    public static final String FOLDER = "BackgroundImagesFolder";
 
     private JTextField imageFolder;
     private JPanel rootPanel;

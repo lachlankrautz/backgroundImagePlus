@@ -1,5 +1,6 @@
 package co.notime.intellijPlugin.backgroundImagePlus;
 
+import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
@@ -25,7 +26,7 @@ public class RandomBackground extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
         PropertiesComponent prop = PropertiesComponent.getInstance();
-        String folder = prop.getValue(SetImageFolder.FOLDER);
+        String folder = prop.getValue(Settings.FOLDER);
         if (folder == null) {
             Notification n = new Notification(
                     "extras",
@@ -45,6 +46,7 @@ public class RandomBackground extends AnAction {
             Notifications.Bus.notify(n);
             return;
         }
+        prop.setValue(IdeBackgroundUtil.FRAME_PROP, null);
         prop.setValue(IdeBackgroundUtil.EDITOR_PROP, image);
         IdeBackgroundUtil.repaintAllWindows();
     }
