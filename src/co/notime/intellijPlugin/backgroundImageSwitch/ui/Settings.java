@@ -5,8 +5,10 @@ import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
-
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 /**
  * Author: Lachlan Krautz
@@ -18,6 +20,7 @@ public class Settings implements Configurable {
 
     private JTextField imageFolder;
     private JPanel rootPanel;
+    private JButton chooser;
 
     @Nls
     @Override
@@ -34,6 +37,21 @@ public class Settings implements Configurable {
     @Nullable
     @Override
     public JComponent createComponent() {
+        chooser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fc = new JFileChooser();
+                String current = imageFolder.getText();
+                if (!current.isEmpty()) {
+                    fc.setCurrentDirectory(new File(current));
+                }
+                fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                fc.showOpenDialog(rootPanel);
+
+                String path = fc.getSelectedFile().getAbsolutePath();
+                imageFolder.setText(path);
+            }
+        });
         return rootPanel;
     }
 
