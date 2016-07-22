@@ -1,4 +1,4 @@
-package co.notime.intellijPlugin.backgroundImageSwitch;
+package co.notime.intellijPlugin.backgroundImagePlus;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.notification.Notification;

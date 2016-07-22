@@ -1,3 +1,4 @@
-# Background Image Switch
+# Background Image Plus
 
-- Switch to random background image in folder
+- Set a folder containing images
+- Set background to random image in folder

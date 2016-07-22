@@ -1,6 +1,6 @@
 <idea-plugin version="2">
-  <id>co.notime.intellijPlugin.backgroundImageSwitch</id>
-  <name>Background Image Switch</name>
+  <id>co.notime.intellijPlugin.backgroundImagePlus</id>
+  <name>Background Image Plus</name>
   <version>1.0</version>
   <vendor email="lachlan.krautz@gmail.com" url="http://github.com/lachlankrautz">Lachlan Krautz</vendor>
 
@@ -24,7 +24,7 @@
 
   <extensions defaultExtensionNs="com.intellij">
       <applicationConfigurable groupId="appearance" groupWeight="20" id="background.image.plus" displayName="Background Image+"
-                               instance="co.notime.intellijPlugin.backgroundImageSwitch.ui.Settings"/>
+                               instance="co.notime.intellijPlugin.backgroundImagePlus.ui.Settings"/>
   </extensions>
 
   <actions>
@@ -32,7 +32,7 @@
           <add-to-group group-id="ViewMenu" anchor="before" relative-to-action="ToggleFullScreenGroup"/>
           <separator/>
           <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction" text="Set Background Image" />
-          <action id="randomBackgroundImage" class="co.notime.intellijPlugin.backgroundImageSwitch.RandomBackground" text="Random Background Image" />
+          <action id="randomBackgroundImage" class="co.notime.intellijPlugin.backgroundImagePlus.RandomBackground" text="Random Background Image" />
       </group>
   </actions>
 

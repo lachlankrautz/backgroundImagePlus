@@ -1,4 +1,4 @@
-package co.notime.intellijPlugin.backgroundImageSwitch.ui;
+package co.notime.intellijPlugin.backgroundImagePlus.ui;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.options.Configurable;
