@@ -28,8 +28,9 @@
   </extensions>
 
   <actions>
-      <group id="backgroundImage" text="Background Image" description="Background Image Options">
-          <add-to-group group-id="ViewMenu" anchor="last"/>
+      <group id="backgroundImagePlus" text="Background Image+" description="Background Image+">
+          <add-to-group group-id="ViewMenu" anchor="before" relative-to-action="ToggleFullScreenGroup"/>
+          <separator/>
           <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction" text="Set Background Image" />
           <action id="randomBackgroundImage" class="co.notime.intellijPlugin.backgroundImageSwitch.RandomBackground" text="Random Background Image" />
       </group>
