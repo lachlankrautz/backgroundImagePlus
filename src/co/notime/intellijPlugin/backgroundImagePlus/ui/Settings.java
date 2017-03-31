@@ -48,7 +48,10 @@ public class Settings implements Configurable {
                 fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 fc.showOpenDialog(rootPanel);
 
-                String path = fc.getSelectedFile().getAbsolutePath();
+                File file = fc.getSelectedFile();
+                String path = file == null
+                        ? ""
+                        : file.getAbsolutePath();
                 imageFolder.setText(path);
             }
         });
