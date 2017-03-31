@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>co.notime.intellijPlugin.backgroundImagePlus</id>
     <name>Background Image Plus</name>
-    <version>1.1</version>
+    <version>1.1.1</version>
     <vendor email="lachlan.krautz@gmail.com" url="http://github.com/lachlankrautz">Lachlan Krautz</vendor>
 
     <description><![CDATA[
