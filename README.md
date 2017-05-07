@@ -9,7 +9,7 @@ MainMenu -> View ->
 
 ### Settings
 
-Settings -> Appearance -> Background Image+ -> Image folder  
+Settings -> Background Image+ -> Image folder  
 Set the folder (recursive) to pull random background images from
 
 ### Usage
