@@ -19,23 +19,27 @@ public class RandomBackground extends AnAction {
     }
 
     @Override
-    public void actionPerformed(AnActionEvent e) {
-        PropertiesComponent prop = PropertiesComponent.getInstance();
-        RandomBackgroundTask task = RandomBackgroundTask.Builder.createTask().withProp(prop).build();
-        int timeExecution = getTimeExecution(prop);
+    public void actionPerformed(AnActionEvent evt) {
+        try {
+           PropertiesComponent prop = PropertiesComponent.getInstance();
+           RandomBackgroundTask task = RandomBackgroundTask.Builder.createTask().withProp(prop).build();
+           int timeExecution = getTimeExecution(prop);
 
-        if(timeExecution != -1) {
-           ScheduledExecutorServiceHandler scheduler = ScheduledExecutorServiceHandler.
-                 Builder.
-                 createScheduler().withTask(task).
-                 withInitialDelay(0).
-                 withPeriod(timeExecution).
-                 withTimeUnit(TimeUnit.SECONDS).
-                 build();
+           if (timeExecution != -1) {
+              ScheduledExecutorServiceHandler scheduler = ScheduledExecutorServiceHandler.
+                    Builder.
+                    createScheduler().withTask(task).
+                    withInitialDelay(0).
+                    withPeriod(timeExecution).
+                    withTimeUnit(TimeUnit.SECONDS).
+                    build();
 
-           scheduler.scheduleAtFixedRate();
-        } else {
-           task.run();
+              scheduler.scheduleAtFixedRate();
+           } else {
+              task.run();
+           }
+        } catch (Exception e) {
+           e.printStackTrace();
         }
     }
 
