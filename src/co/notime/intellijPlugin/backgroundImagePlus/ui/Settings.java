@@ -88,11 +88,8 @@ public class Settings implements Configurable {
         String timeExecutionValue = timeExecution.getText();
         prop.setValue(TIME_EXECUTION, timeExecutionValue);
 
-        if(timeExecutionValue.isEmpty()) {
-           ScheduledExecutorServiceHandler.shutdownExecution();
-        }else {
-           ActionManager.getInstance().getAction("randomBackgroundImage").actionPerformed(null);
-        }
+        ScheduledExecutorServiceHandler.shutdownExecution();
+        ActionManager.getInstance().getAction("randomBackgroundImage").actionPerformed(null);
     }
 
     @Override
