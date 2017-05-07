@@ -15,6 +15,11 @@ MainMenu -> View ->
 - Random Background Image
 - Clear Background Image
 
+### Settings
+
+Settings -> Background Image+ -> Image folder  
+Set the folder (recursive) to pull random background images from
+
 ### Usage
 
 - Set your image folder and time in settings
