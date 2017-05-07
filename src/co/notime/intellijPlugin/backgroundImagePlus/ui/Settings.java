@@ -2,6 +2,7 @@ package co.notime.intellijPlugin.backgroundImagePlus.ui;
 
 import co.notime.intellijPlugin.backgroundImagePlus.ScheduledExecutorServiceHandler;
 import com.intellij.ide.util.PropertiesComponent;
+import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import org.jetbrains.annotations.Nls;
@@ -75,6 +76,7 @@ public class Settings implements Configurable {
         if (storedTimeExecution == null) {
             storedTimeExecution = "";
         }
+
         return !storedFolder.equals(uiFolder) || !storedTimeExecution.equals(uiTimeExecution);
     }
 
@@ -84,11 +86,13 @@ public class Settings implements Configurable {
         prop.setValue(FOLDER, imageFolder.getText());
 
         String timeExecutionValue = timeExecution.getText();
+        prop.setValue(TIME_EXECUTION, timeExecutionValue);
+
         if(timeExecutionValue.isEmpty()) {
            ScheduledExecutorServiceHandler.shutdownExecution();
+        }else {
+           ActionManager.getInstance().getAction("randomBackgroundImage").actionPerformed(null);
         }
-
-        prop.setValue(TIME_EXECUTION, timeExecutionValue);
     }
 
     @Override

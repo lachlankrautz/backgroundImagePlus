@@ -1,5 +1,7 @@
 package co.notime.intellijPlugin.backgroundImagePlus;
 
+import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
