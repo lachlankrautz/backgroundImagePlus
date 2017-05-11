@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
     <id>co.notime.intellijPlugin.backgroundImagePlus</id>
     <name>Background Image Plus</name>
     <version>1.1.1</version>
@@ -25,7 +25,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable groupId="appearance" groupWeight="20" id="background.image.plus"
-                                 displayName="Background Image+"
+                                 displayName="Background Image Plus"
                                  instance="co.notime.intellijPlugin.backgroundImagePlus.ui.Settings"/>
     </extensions>
 
