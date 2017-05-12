@@ -3,26 +3,19 @@
 ### Settings
 
 Settings -> Appearance & Behaviour -> Background Image Plus  
-- Set the folder (recursive) to pull random background images from
-- Set the time to change between images (seconds)
-
-To disable the random behaviour, let Time (seconds) empty
+- Backgrounds: folder (recursive) to pull random background images from
+- Change every: Set interval to change background every x minutes
 
 ### Menu Items
 
-MainMenu -> View -> 
+View: 
 - Set Background Image
 - Random Background Image
-- Clear Background Image
-
-### Settings
-
-Settings -> Background Image+ -> Image folder  
-Set the folder (recursive) to pull random background images from
+- Clear Background Image (cancels "change every" interval)
 
 ### Usage
 
-- Set your image folder and time in settings
-- Start it through main menu "Random Background Image"
-
-The behaviour will persist through executions (IntelliJ restart) once started
+- Set backgrounds folder
+- Optionally set "change every" interval
+- Optionally bind "Random Background Image" action to a hotkey
+- Cycle background images while procrastinating

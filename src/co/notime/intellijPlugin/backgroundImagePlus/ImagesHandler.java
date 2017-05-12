@@ -12,57 +12,56 @@ import java.util.Random;
  */
 class ImagesHandler {
 
-   private MimetypesFileTypeMap typeMap;
+    private MimetypesFileTypeMap typeMap;
 
-   public ImagesHandler() {
-      typeMap = new MimetypesFileTypeMap();
-   }
+    ImagesHandler() {
+        typeMap = new MimetypesFileTypeMap();
+    }
 
-   /**
-    *
-    * @param folder folder to search for images
-    * @return random image or null
-    */
-   public String getRandomImage (String folder) {
-      if (folder.isEmpty()) {
-         return null;
-      }
-      List<String> images = new ArrayList<String>();
-      collectImages(images, folder);
-      int count = images.size();
-      if (count == 0) {
-         return null;
-      }
-      Random randomGenerator = new Random();
-      int index = randomGenerator.nextInt(images.size());
-      return images.get(index);
-   }
+    /**
+     * @param folder folder to search for images
+     * @return random image or null
+     */
+    String getRandomImage(String folder) {
+        if (folder.isEmpty()) {
+            return null;
+        }
+        List<String> images = new ArrayList<>();
+        collectImages(images, folder);
+        int count = images.size();
+        if (count == 0) {
+            return null;
+        }
+        Random randomGenerator = new Random();
+        int index = randomGenerator.nextInt(images.size());
+        return images.get(index);
+    }
 
-   private void collectImages (List<String> images, String folder) {
-      File root = new File(folder);
-      if (!root.exists()) {
-         return;
-      }
-      File[] list = root.listFiles();
-      if (list == null) {
-         return;
-      }
+    private void collectImages(List<String> images, String folder) {
+        File root = new File(folder);
+        if (!root.exists()) {
+            return;
+        }
+        File[] list = root.listFiles();
+        if (list == null) {
+            return;
+        }
 
-      for (File f : list) {
-         if (f.isDirectory()) {
-            collectImages(images, f.getAbsolutePath());
-         }
-         else {
-            if (!isImage(f)) {
-               continue;
+        for (File f : list) {
+            if (f.isDirectory()) {
+                collectImages(images, f.getAbsolutePath());
+            } else {
+                if (!isImage(f)) {
+                    continue;
+                }
+                images.add(f.getAbsolutePath());
             }
-            images.add(f.getAbsolutePath());
-         }
-      }
-   }
+        }
+    }
 
-   private boolean isImage (File file) {
-      String[] parts = typeMap.getContentType(file).split("/");
-      return parts.length != 0 && parts[0].equals("image");
-   }
+    private boolean isImage(File file) {
+        String[] parts = typeMap.getContentType(file).split("/");
+        return parts.length != 0 && parts[0].equals("image");
+    }
+
 }

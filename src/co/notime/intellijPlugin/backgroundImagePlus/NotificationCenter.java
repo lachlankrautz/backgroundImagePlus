@@ -10,12 +10,13 @@ import com.intellij.notification.Notifications;
  */
 class NotificationCenter {
 
-   public static void notice (String message) {
-      Notification n = new Notification(
-            "extras",
-            "Notice",
-            message,
-            NotificationType.INFORMATION);
-      Notifications.Bus.notify(n);
-   }
+    static void notice(String message) {
+        Notification n = new Notification(
+                "extras",
+                "Notice",
+                message,
+                NotificationType.INFORMATION);
+        Notifications.Bus.notify(n);
+    }
+
 }

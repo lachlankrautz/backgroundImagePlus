@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>co.notime.intellijPlugin.backgroundImagePlus</id>
     <name>Background Image Plus</name>
-    <version>1.1.1</version>
+    <version>1.2.1</version>
     <vendor email="lachlan.krautz@gmail.com" url="http://github.com/lachlankrautz">Lachlan Krautz</vendor>
 
     <description><![CDATA[
@@ -35,9 +35,9 @@
             <separator/>
             <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction"
                     text="Set Background Image"/>
-            <action id="randomBackgroundImage" class="co.notime.intellijPlugin.backgroundImagePlus.RandomBackground"
+            <action id="randomBackgroundImage" class="co.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
                     text="Random Background Image"/>
-            <action id="clearBackgroundImage" class="co.notime.intellijPlugin.backgroundImagePlus.ClearBackground"
+            <action id="clearBackgroundImage" class="co.notime.intellijPlugin.backgroundImagePlus.action.ClearBackground"
                     text="Clear Background Image"/>
         </group>
     </actions>
