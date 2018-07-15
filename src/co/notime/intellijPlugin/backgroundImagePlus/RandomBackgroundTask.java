@@ -30,7 +30,7 @@ public class RandomBackgroundTask implements Runnable {
             NotificationCenter.notice("Image folder not set");
             return;
         }
-        String image = imagesHandler.getRandomImage(folder);
+        String image = imagesHandler.getRandomImage(folder,prop.getValue(Settings.TMP_FOLDER));
         if (image == null) {
             NotificationCenter.notice("No image found");
             return;
