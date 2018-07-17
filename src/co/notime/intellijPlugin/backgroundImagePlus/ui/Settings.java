@@ -13,7 +13,6 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
-import java.util.function.Consumer;
 
 /**
  * Author: Lachlan Krautz
@@ -50,19 +49,20 @@ public class Settings implements Configurable {
     @Nullable
     @Override
     public JComponent createComponent() {
-        FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
+        FileChooserDescriptor imageFolderDescriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
+        FileChooserDescriptor tmpFolderDescriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
         class SetFieldWithBrowser extends TextBrowseFolderListener {
-            private Consumer<String> processSelection;
+            private TextFieldWithBrowseButton directoryField;
 
-            public SetFieldWithBrowser(FileChooserDescriptor descriptor, Consumer<String> processSelection) {
+            public SetFieldWithBrowser(FileChooserDescriptor descriptor, TextFieldWithBrowseButton directoryField) {
                 super(descriptor);
-                this.processSelection = processSelection;
+                this.directoryField = directoryField;
             }
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc = new JFileChooser();
-                String current = imageFolder.getText();
+                String current = directoryField.getText();
                 if (!current.isEmpty()) {
                     fc.setCurrentDirectory(new File(current));
                 }
@@ -73,11 +73,11 @@ public class Settings implements Configurable {
                 String path = file == null
                         ? ""
                         : file.getAbsolutePath();
-                processSelection.accept(path);
+                directoryField.setText(path);
             }
         }
-        imageFolder.addBrowseFolderListener(new SetFieldWithBrowser(descriptor,imageFolder::setText));
-        tmpFolderForZips.addBrowseFolderListener(new SetFieldWithBrowser(descriptor, tmpFolderForZips::setText));
+        imageFolder.addBrowseFolderListener(new SetFieldWithBrowser(imageFolderDescriptor,imageFolder));
+        tmpFolderForZips.addBrowseFolderListener(new SetFieldWithBrowser(tmpFolderDescriptor, tmpFolderForZips));
         autoChangeCheckBox.addActionListener(e -> intervalSpinner.setEnabled(autoChangeCheckBox.isSelected()));
         return rootPanel;
     }
