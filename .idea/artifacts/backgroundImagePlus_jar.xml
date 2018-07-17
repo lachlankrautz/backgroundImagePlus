@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="backgroundImagePlus:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/backgroundImagePlus_jar</output-path>
-    <root id="archive" name="backgroundImagePlus.jar">
-      <element id="module-output" name="backgroundImagePlus" />
-    </root>
-  </artifact>
-</component>
