@@ -23,6 +23,7 @@ public class Settings implements Configurable {
     public static final String FOLDER = "BackgroundImagesFolder";
     public static final String AUTO_CHANGE = "BackgroundImagesAutoChange";
     public static final String INTERVAL = "BackgroundImagesInterval";
+    public static final String TMP_FOLDER = "BackgroundImagesTmpFolder";
 
     private TextFieldWithBrowseButton imageFolder;
     private JPanel rootPanel;
@@ -31,6 +32,7 @@ public class Settings implements Configurable {
 
     @SuppressWarnings("unused")
     private JLabel measurement;
+    private TextFieldWithBrowseButton tmpFolderForZips;
 
     @Nls
     @Override
@@ -47,12 +49,20 @@ public class Settings implements Configurable {
     @Nullable
     @Override
     public JComponent createComponent() {
-        FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
-        imageFolder.addBrowseFolderListener(new TextBrowseFolderListener(descriptor) {
+        FileChooserDescriptor imageFolderDescriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
+        FileChooserDescriptor tmpFolderDescriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
+        class SetFieldWithBrowser extends TextBrowseFolderListener {
+            private TextFieldWithBrowseButton directoryField;
+
+            public SetFieldWithBrowser(FileChooserDescriptor descriptor, TextFieldWithBrowseButton directoryField) {
+                super(descriptor);
+                this.directoryField = directoryField;
+            }
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc = new JFileChooser();
-                String current = imageFolder.getText();
+                String current = directoryField.getText();
                 if (!current.isEmpty()) {
                     fc.setCurrentDirectory(new File(current));
                 }
@@ -63,9 +73,11 @@ public class Settings implements Configurable {
                 String path = file == null
                         ? ""
                         : file.getAbsolutePath();
-                imageFolder.setText(path);
+                directoryField.setText(path);
             }
-        });
+        }
+        imageFolder.addBrowseFolderListener(new SetFieldWithBrowser(imageFolderDescriptor,imageFolder));
+        tmpFolderForZips.addBrowseFolderListener(new SetFieldWithBrowser(tmpFolderDescriptor, tmpFolderForZips));
         autoChangeCheckBox.addActionListener(e -> intervalSpinner.setEnabled(autoChangeCheckBox.isSelected()));
         return rootPanel;
     }
@@ -80,7 +92,8 @@ public class Settings implements Configurable {
         }
         return !storedFolder.equals(uiFolder)
                 || intervalModified(prop)
-                || prop.getBoolean(AUTO_CHANGE) != autoChangeCheckBox.isSelected();
+                || prop.getBoolean(AUTO_CHANGE) != autoChangeCheckBox.isSelected()
+                || !prop.getValue(TMP_FOLDER,"").equals(tmpFolderForZips.getText());
     }
 
     private boolean intervalModified (PropertiesComponent prop) {
@@ -97,6 +110,7 @@ public class Settings implements Configurable {
         int interval = ((SpinnerNumberModel) intervalSpinner.getModel()).getNumber().intValue();
 
         prop.setValue(FOLDER, imageFolder.getText());
+        prop.setValue(TMP_FOLDER, tmpFolderForZips.getText());
         prop.setValue(INTERVAL, interval, 0);
         prop.setValue(AUTO_CHANGE, autoChange);
         intervalSpinner.setEnabled(autoChange);
@@ -112,6 +126,7 @@ public class Settings implements Configurable {
     public void reset() {
         PropertiesComponent prop = PropertiesComponent.getInstance();
         imageFolder.setText(prop.getValue(FOLDER));
+        tmpFolderForZips.setText(prop.getValue(TMP_FOLDER));
         intervalSpinner.setValue(prop.getInt(INTERVAL, 0));
         autoChangeCheckBox.setSelected(prop.getBoolean(AUTO_CHANGE, false));
         intervalSpinner.setEnabled(autoChangeCheckBox.isSelected());
