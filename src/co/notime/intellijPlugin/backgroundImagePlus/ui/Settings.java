@@ -10,6 +10,7 @@ import com.intellij.openapi.ui.TextBrowseFolderListener;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -23,14 +24,18 @@ public class Settings implements Configurable {
     public static final String FOLDER = "BackgroundImagesFolder";
     public static final String AUTO_CHANGE = "BackgroundImagesAutoChange";
     public static final String INTERVAL = "BackgroundImagesInterval";
+    public static final String OPACITY = "BackgroundImagesOpacity";
 
     private TextFieldWithBrowseButton imageFolder;
     private JPanel rootPanel;
     private JSpinner intervalSpinner;
+    private JSpinner opacitySpinner;
     private JCheckBox autoChangeCheckBox;
 
     @SuppressWarnings("unused")
     private JLabel measurement;
+    @SuppressWarnings("unused")
+    private JLabel opacityLabel;
 
     @Nls
     @Override
@@ -73,20 +78,27 @@ public class Settings implements Configurable {
     @Override
     public boolean isModified() {
         PropertiesComponent prop = PropertiesComponent.getInstance();
-        String storedFolder      = prop.getValue(FOLDER);
-        String uiFolder          = imageFolder.getText();
+        String storedFolder = prop.getValue(FOLDER);
+        String uiFolder = imageFolder.getText();
         if (storedFolder == null) {
             storedFolder = "";
         }
         return !storedFolder.equals(uiFolder)
+                || opacityModified(prop)
                 || intervalModified(prop)
                 || prop.getBoolean(AUTO_CHANGE) != autoChangeCheckBox.isSelected();
     }
 
-    private boolean intervalModified (PropertiesComponent prop) {
+    private boolean intervalModified(PropertiesComponent prop) {
         int storedInterval = prop.getInt(INTERVAL, 0);
         int uiInterval = ((SpinnerNumberModel) intervalSpinner.getModel()).getNumber().intValue();
         return storedInterval != uiInterval;
+    }
+
+    private boolean opacityModified(PropertiesComponent prop){
+        int opacity = ((SpinnerNumberModel) opacitySpinner.getModel()).getNumber().intValue();
+        int storedOpacity = prop.getInt(OPACITY, 15);
+        return storedOpacity != opacity;
     }
 
     @Override
@@ -96,9 +108,12 @@ public class Settings implements Configurable {
         boolean autoChange = autoChangeCheckBox.isSelected();
         int interval = ((SpinnerNumberModel) intervalSpinner.getModel()).getNumber().intValue();
 
+        int opacity = ((SpinnerNumberModel) opacitySpinner.getModel()).getNumber().intValue();
+
         prop.setValue(FOLDER, imageFolder.getText());
         prop.setValue(INTERVAL, interval, 0);
         prop.setValue(AUTO_CHANGE, autoChange);
+        prop.setValue(OPACITY, opacity, 15);
         intervalSpinner.setEnabled(autoChange);
 
         if (autoChange && interval > 0) {
@@ -115,10 +130,12 @@ public class Settings implements Configurable {
         intervalSpinner.setValue(prop.getInt(INTERVAL, 0));
         autoChangeCheckBox.setSelected(prop.getBoolean(AUTO_CHANGE, false));
         intervalSpinner.setEnabled(autoChangeCheckBox.isSelected());
+        opacitySpinner.setValue(prop.getInt(OPACITY, 15));
     }
 
     @Override
-    public void disposeUIResources() {}
+    public void disposeUIResources() {
+    }
 
     private void createUIComponents() {
         PropertiesComponent prop = PropertiesComponent.getInstance();

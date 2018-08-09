@@ -3,6 +3,7 @@ package co.notime.intellijPlugin.backgroundImagePlus;
 import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.wm.impl.IdeBackgroundUtil;
+
 import java.io.File;
 
 /**
@@ -21,6 +22,7 @@ public class RandomBackgroundTask implements Runnable {
     public void run() {
         PropertiesComponent prop = PropertiesComponent.getInstance();
         String folder = prop.getValue(Settings.FOLDER);
+        int opacity = prop.getInt(Settings.OPACITY, 15);
         if (folder == null || folder.isEmpty()) {
             NotificationCenter.notice("Image folder not set");
             return;
@@ -38,9 +40,14 @@ public class RandomBackgroundTask implements Runnable {
         if (image.contains(",")) {
             NotificationCenter.notice("Intellij wont load images with ',' character\n" + image);
         }
-        prop.setValue(IdeBackgroundUtil.FRAME_PROP, null);
-        prop.setValue(IdeBackgroundUtil.EDITOR_PROP, image);
-        // NotificationCenter.notice("Image: " + image.replace(folder + File.separator, ""));
+        if (opacity < 0 || opacity > 100) {
+            NotificationCenter.notice("opacity must be between [0,100],Your value is not within this range,The value is set to a default value of 15");
+            opacity = 15;
+        }
+
+        //默认透明度设为25
+        prop.setValue(IdeBackgroundUtil.FRAME_PROP, image + "," + opacity);
+        prop.setValue(IdeBackgroundUtil.EDITOR_PROP, image + "," + opacity);
         IdeBackgroundUtil.repaintAllWindows();
     }
 
