@@ -38,10 +38,14 @@ public class RandomBackgroundTask implements Runnable {
         if (image.contains(",")) {
             NotificationCenter.notice("Intellij wont load images with ',' character\n" + image);
         }
-        prop.setValue(IdeBackgroundUtil.FRAME_PROP, null);
-        prop.setValue(IdeBackgroundUtil.EDITOR_PROP, image);
-        // NotificationCenter.notice("Image: " + image.replace(folder + File.separator, ""));
-        IdeBackgroundUtil.repaintAllWindows();
+		String lastImage = prop.getValue(IdeBackgroundUtil.EDITOR_PROP);//get last settings of image
+		if (lastImage != null && lastImage.contains(",")) {//when params setted,keep them
+			image += lastImage.substring(lastImage.indexOf(','));
+		}
+		prop.setValue(IdeBackgroundUtil.FRAME_PROP, null);
+		prop.setValue(IdeBackgroundUtil.EDITOR_PROP, image);
+		// NotificationCenter.notice("Image: " + image.replace(folder + File.separator, ""));
+        //IdeBackgroundUtil.repaintAllWindows(); //the new version idea don't need to do this
     }
 
 }
