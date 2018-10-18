@@ -11,18 +11,17 @@ import java.io.File;
  * Date:   07/05/17
  */
 public class RandomBackgroundTask implements Runnable {
-
+    
     private ImagesHandler imagesHandler;
-
+    
     public RandomBackgroundTask() {
         imagesHandler = new ImagesHandler();
     }
-
+    
     @Override
     public void run() {
         PropertiesComponent prop = PropertiesComponent.getInstance();
         String folder = prop.getValue(Settings.FOLDER);
-        int opacity = prop.getInt(Settings.OPACITY, 15);
         if (folder == null || folder.isEmpty()) {
             NotificationCenter.notice("Image folder not set");
             return;
@@ -40,15 +39,11 @@ public class RandomBackgroundTask implements Runnable {
         if (image.contains(",")) {
             NotificationCenter.notice("Intellij wont load images with ',' character\n" + image);
         }
-        if (opacity < 0 || opacity > 100) {
-            NotificationCenter.notice("opacity must be between [0,100],Your value is not within this range,The value is set to a default value of 15");
-            opacity = 15;
-        }
-
-        //默认透明度设为25
-        prop.setValue(IdeBackgroundUtil.FRAME_PROP, image + "," + opacity);
-        prop.setValue(IdeBackgroundUtil.EDITOR_PROP, image + "," + opacity);
-        IdeBackgroundUtil.repaintAllWindows();
+        int opacity = prop.getInt(Settings.OPACITY, Settings.OPACITY_SPINNER_DEFAULT);
+        image += "," + opacity;
+        prop.setValue(IdeBackgroundUtil.FRAME_PROP, image);
+        prop.setValue(IdeBackgroundUtil.EDITOR_PROP, image);
+        //IdeBackgroundUtil.repaintAllWindows(); //the new version idea don't need to do this
     }
-
+    
 }
