@@ -1,6 +1,6 @@
-package co.notime.intellijPlugin.backgroundImagePlus;
+package com.notime.intellijPlugin.backgroundImagePlus;
 
-import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
+import com.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.wm.impl.IdeBackgroundUtil;
 

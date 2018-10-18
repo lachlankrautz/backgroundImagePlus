@@ -1,4 +1,4 @@
-package co.notime.intellijPlugin.backgroundImagePlus;
+package com.notime.intellijPlugin.backgroundImagePlus;
 
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;

@@ -1,6 +1,6 @@
-package co.notime.intellijPlugin.backgroundImagePlus.ui;
+package com.notime.intellijPlugin.backgroundImagePlus.ui;
 
-import co.notime.intellijPlugin.backgroundImagePlus.BackgroundService;
+import com.notime.intellijPlugin.backgroundImagePlus.BackgroundService;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;

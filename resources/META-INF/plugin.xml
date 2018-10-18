@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>co.notime.intellijPlugin.backgroundImagePlus</id>
+    <id>com.notime.intellijPlugin.backgroundImagePlus</id>
     <name>Background Image Plus +</name>
     <version>0.9</version>
     <vendor email="" url="http://github.com/HNUHell">HNUHell</vendor>
@@ -33,7 +33,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable groupId="appearance" groupWeight="20" id="background.image.plus"
                                  displayName="Background Image Plus"
-                                 instance="co.notime.intellijPlugin.backgroundImagePlus.ui.Settings"/>
+                                 instance="com.notime.intellijPlugin.backgroundImagePlus.ui.Settings"/>
     </extensions>
 
     <actions>
@@ -43,10 +43,10 @@
             <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction"
                     text="Set Background Image"/>
             <action id="randomBackgroundImage"
-                    class="co.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
+                    class="com.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
                     text="Random Background Image"/>
             <action id="clearBackgroundImage"
-                    class="co.notime.intellijPlugin.backgroundImagePlus.action.ClearBackground"
+                    class="com.notime.intellijPlugin.backgroundImagePlus.action.ClearBackground"
                     text="Clear Background Image"/>
         </group>
     </actions>

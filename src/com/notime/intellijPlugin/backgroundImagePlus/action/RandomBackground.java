@@ -1,11 +1,11 @@
-package co.notime.intellijPlugin.backgroundImagePlus.action;
+package com.notime.intellijPlugin.backgroundImagePlus.action;
 
-import co.notime.intellijPlugin.backgroundImagePlus.BackgroundService;
-import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
+import com.notime.intellijPlugin.backgroundImagePlus.BackgroundService;
+import com.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import co.notime.intellijPlugin.backgroundImagePlus.RandomBackgroundTask;
+import com.notime.intellijPlugin.backgroundImagePlus.RandomBackgroundTask;
 
 /**
  * Author: Lachlan Krautz

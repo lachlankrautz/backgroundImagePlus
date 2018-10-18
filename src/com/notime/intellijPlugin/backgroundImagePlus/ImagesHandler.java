@@ -1,4 +1,4 @@
-package co.notime.intellijPlugin.backgroundImagePlus;
+package com.notime.intellijPlugin.backgroundImagePlus;
 
 import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
