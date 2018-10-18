@@ -1,16 +1,23 @@
 <idea-plugin>
     <id>co.notime.intellijPlugin.backgroundImagePlus</id>
-    <name>Background Image Plus</name>
-    <version>1.2.1</version>
-    <vendor email="lachlan.krautz@gmail.com" url="http://github.com/lachlankrautz">Lachlan Krautz</vendor>
+    <name>Background Image Plus +</name>
+    <version>0.9</version>
+    <vendor email="" url="http://github.com/HNUHell">HNUHell</vendor>
 
     <description><![CDATA[
       Set the editor background to a random picture from a folder.<br>
+      Forked from https://github.com/lachlankrautz/backgroundImagePlus.<br>
+      But  optimized for opacity and timing change.<br>
+      reference fork:<br>
+            https://github.com/godfather1103/backgroundImagePlus<br>
+            https://github.com/zhanglanzhu521/backgroundImagePlus<br>
     ]]></description>
 
     <change-notes><![CDATA[
       Added settings page<br>
-      Added menu items
+      Added menu items<br>
+      Added opacity set feature<br>
+      Repaired change function and increase time diversity<br>
     ]]>
     </change-notes>
 
@@ -35,9 +42,11 @@
             <separator/>
             <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction"
                     text="Set Background Image"/>
-            <action id="randomBackgroundImage" class="co.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
+            <action id="randomBackgroundImage"
+                    class="co.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
                     text="Random Background Image"/>
-            <action id="clearBackgroundImage" class="co.notime.intellijPlugin.backgroundImagePlus.action.ClearBackground"
+            <action id="clearBackgroundImage"
+                    class="co.notime.intellijPlugin.backgroundImagePlus.action.ClearBackground"
                     text="Clear Background Image"/>
         </group>
     </actions>
