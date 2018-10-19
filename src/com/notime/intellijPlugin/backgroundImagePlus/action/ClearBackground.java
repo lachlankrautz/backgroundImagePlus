@@ -19,7 +19,6 @@ public class ClearBackground extends AnAction {
         prop.setValue(IdeBackgroundUtil.FRAME_PROP, null);
         prop.setValue(Settings.AUTO_CHANGE, false);
         BackgroundService.stop();
-        IdeBackgroundUtil.repaintAllWindows();
     }
 
 }

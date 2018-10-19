@@ -1,23 +1,23 @@
 <idea-plugin>
     <id>com.notime.intellijPlugin.backgroundImagePlus</id>
     <name>Background Image Plus +</name>
-    <version>0.9</version>
-    <vendor email="" url="http://github.com/HNUHell">HNUHell</vendor>
+    <version>1.0</version>
+    <vendor email="" url="https://github.com/HNUHell/backgroundImagePlus">HNUHell</vendor>
 
     <description><![CDATA[
       Set the editor background to a random picture from a folder.<br>
       Forked from https://github.com/lachlankrautz/backgroundImagePlus.<br>
-      But  optimized for opacity and timing change.<br>
+      But optimized for change function.<br>
       reference fork:<br>
             https://github.com/godfather1103/backgroundImagePlus<br>
             https://github.com/zhanglanzhu521/backgroundImagePlus<br>
     ]]></description>
 
     <change-notes><![CDATA[
-      Added settings page<br>
-      Added menu items<br>
-      Added opacity set feature<br>
-      Repaired change function and increase time diversity<br>
+      Added settings page.<br>
+      Added menu items.<br>
+      Repaired change function and added time diversity.<br>
+      Added Change mode.<br>
     ]]>
     </change-notes>
 

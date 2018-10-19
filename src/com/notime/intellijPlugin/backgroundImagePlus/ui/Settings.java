@@ -1,6 +1,5 @@
 package com.notime.intellijPlugin.backgroundImagePlus.ui;
 
-import com.notime.intellijPlugin.backgroundImagePlus.BackgroundService;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
@@ -9,6 +8,9 @@ import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.TextBrowseFolderListener;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
+import com.intellij.openapi.wm.impl.IdeBackgroundUtil;
+import com.notime.intellijPlugin.backgroundImagePlus.BackgroundService;
+import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,22 +26,24 @@ public class Settings implements Configurable {
     
     public static final String FOLDER = "BackgroundImagesFolder";
     public static final String AUTO_CHANGE = "BackgroundImagesAutoChange";
+    public static final String KEEP_SAME_IMAGE = "BackgroundImagesKeepSameImage";
     public static final String INTERVAL = "BackgroundImagesInterval";
-    public static final String OPACITY = "BackgroundImagesOpacity";
     public static final String TIME_UNIT = "BackgroundImagesTimeUnit";
-    public static final Integer OPACITY_SPINNER_DEFAULT = 15;
+    public static final String RADIO_BUTTON = "BackgroundImagesRadioButton";
     public static final Integer INTERVAL_SPINNER_DEFAULT = 0;
     public static final Integer TIME_UNIT_DEFAULT = 1;
     
     private TextFieldWithBrowseButton imageFolder;
     private JPanel rootPanel;
     private JSpinner intervalSpinner;
-    private JSpinner opacitySpinner;
     private JCheckBox autoChangeCheckBox;
     
-    @SuppressWarnings("unused")
-    private JLabel opacityLabel;
-    private JComboBox timeUnitBox;
+    private JComboBox<String> timeUnitBox;
+    
+    private JRadioButton editorRadioButton;
+    private JRadioButton frameRadioButton;
+    private JRadioButton bothRadioButton;
+    private JCheckBox keepSameImageCheckBox;
     
     @Nls
     @Override
@@ -69,9 +73,7 @@ public class Settings implements Configurable {
                 fc.showOpenDialog(rootPanel);
                 
                 File file = fc.getSelectedFile();
-                String path = file == null
-                        ? ""
-                        : file.getAbsolutePath();
+                String path = file == null ? "" : file.getAbsolutePath();
                 imageFolder.setText(path);
             }
         });
@@ -88,10 +90,11 @@ public class Settings implements Configurable {
             storedFolder = "";
         }
         return !storedFolder.equals(uiFolder)
-                || opacityModified(prop)
                 || intervalModified(prop)
                 || timeUnitModified(prop)
-                || prop.getBoolean(AUTO_CHANGE) != autoChangeCheckBox.isSelected();
+                || radioButtonModified(prop)
+                || prop.getBoolean(AUTO_CHANGE) != autoChangeCheckBox.isSelected()
+                || prop.getBoolean(KEEP_SAME_IMAGE) != keepSameImageCheckBox.isSelected();
     }
     
     private boolean intervalModified(PropertiesComponent prop) {
@@ -100,16 +103,36 @@ public class Settings implements Configurable {
         return storedInterval != uiInterval;
     }
     
-    private boolean opacityModified(PropertiesComponent prop) {
-        int opacity = ((SpinnerNumberModel) opacitySpinner.getModel()).getNumber().intValue();
-        int storedOpacity = prop.getInt(OPACITY, OPACITY_SPINNER_DEFAULT);
-        return storedOpacity != opacity;
-    }
-    
     private boolean timeUnitModified(PropertiesComponent prop) {
         int timeUnit = timeUnitBox.getSelectedIndex();
         int storedTimeUnit = prop.getInt(TIME_UNIT, TIME_UNIT_DEFAULT);
         return storedTimeUnit != timeUnit;
+    }
+    
+    private boolean radioButtonModified(PropertiesComponent prop) {
+        String storedText = prop.getValue(RADIO_BUTTON, IdeBackgroundUtil.EDITOR_PROP + "," + IdeBackgroundUtil.EDITOR_PROP);
+        return !storedText.equals(radioButtonText());
+    }
+    
+    private void selectRadioButton(String text) {
+        if (StringUtils.isEmpty(text)) {
+            text = IdeBackgroundUtil.EDITOR_PROP + "," + IdeBackgroundUtil.FRAME_PROP;
+        }
+        editorRadioButton.setSelected(IdeBackgroundUtil.EDITOR_PROP.equals(text));
+        frameRadioButton.setSelected(IdeBackgroundUtil.FRAME_PROP.equals(text));
+        bothRadioButton.setSelected((IdeBackgroundUtil.EDITOR_PROP + "," + IdeBackgroundUtil.FRAME_PROP).equals(text));
+    }
+    
+    private String radioButtonText() {
+        String text;
+        if (editorRadioButton.isSelected()) {
+            text = IdeBackgroundUtil.EDITOR_PROP;
+        } else if (frameRadioButton.isSelected()) {
+            text = IdeBackgroundUtil.FRAME_PROP;
+        } else {
+            text = IdeBackgroundUtil.EDITOR_PROP + "," + IdeBackgroundUtil.FRAME_PROP;
+        }
+        return text;
     }
     
     @Override
@@ -118,14 +141,14 @@ public class Settings implements Configurable {
         
         boolean autoChange = autoChangeCheckBox.isSelected();
         int interval = ((SpinnerNumberModel) intervalSpinner.getModel()).getNumber().intValue();
-        int opacity = ((SpinnerNumberModel) opacitySpinner.getModel()).getNumber().intValue();
         int timeUnit = timeUnitBox.getSelectedIndex();
-    
+        
         prop.setValue(FOLDER, imageFolder.getText());
         prop.setValue(INTERVAL, interval, INTERVAL_SPINNER_DEFAULT);
         prop.setValue(AUTO_CHANGE, autoChange);
-        prop.setValue(OPACITY, opacity, OPACITY_SPINNER_DEFAULT);
+        prop.setValue(KEEP_SAME_IMAGE, keepSameImageCheckBox.isSelected());
         prop.setValue(TIME_UNIT, timeUnit, TIME_UNIT_DEFAULT);
+        prop.setValue(RADIO_BUTTON, radioButtonText());
         intervalSpinner.setEnabled(autoChange);
         
         if (autoChange && interval > 0) {
@@ -141,9 +164,10 @@ public class Settings implements Configurable {
         imageFolder.setText(prop.getValue(FOLDER));
         intervalSpinner.setValue(prop.getInt(INTERVAL, INTERVAL_SPINNER_DEFAULT));
         autoChangeCheckBox.setSelected(prop.getBoolean(AUTO_CHANGE, false));
+        keepSameImageCheckBox.setSelected(prop.getBoolean(KEEP_SAME_IMAGE, false));
         intervalSpinner.setEnabled(autoChangeCheckBox.isSelected());
-        opacitySpinner.setValue(prop.getInt(OPACITY, OPACITY_SPINNER_DEFAULT));
         timeUnitBox.setSelectedIndex(prop.getInt(TIME_UNIT, TIME_UNIT_DEFAULT));
+        selectRadioButton(prop.getValue(RADIO_BUTTON));
     }
     
     @Override
@@ -153,7 +177,6 @@ public class Settings implements Configurable {
     private void createUIComponents() {
         PropertiesComponent prop = PropertiesComponent.getInstance();
         intervalSpinner = new JSpinner(new SpinnerNumberModel(prop.getInt(INTERVAL, INTERVAL_SPINNER_DEFAULT), 0, 1000, 5));
-        opacitySpinner = new JSpinner(new SpinnerNumberModel(prop.getInt(INTERVAL, OPACITY_SPINNER_DEFAULT), 0, 100, 1));
         timeUnitBox = new ComboBox<>();
         timeUnitBox.addItem("SECONDS");
         timeUnitBox.addItem("MINUTES");

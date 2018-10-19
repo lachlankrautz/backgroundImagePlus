@@ -7,17 +7,19 @@ Set background random background images in Intellij editor.
 
 Settings -> Appearance & Behaviour -> Background Image Plus  
 - Backgrounds: folder (recursive) to pull random background images from
-- Opacity: Set background opacity  -> [0, 100]
 - Change every: Set interval to change background every x seconds/minutes/hours/days
+- Change mode: Set environment for change （if choose "both", then "Keep same image" will keep same image in both environments）
 
 ![Alt text](https://github.com/HNUHell/backgroundImagePlus/blob/master/resources/screenshots/settings.png?raw=true "Title")
 
 ### Menu Items
 
 View: 
-- Set Background Image
+- Set Background Image (set image properties : opacity/fill/anchor/flip ...)
 - Random Background Image
 - Clear Background Image (cancels "change every" interval)
+
+![Alt text](https://github.com/HNUHell/backgroundImagePlus/blob/master/resources/screenshots/actions.png?raw=true "Title")
 
 ### Usage
 

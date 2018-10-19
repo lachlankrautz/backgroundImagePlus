@@ -1,8 +1,7 @@
 package com.notime.intellijPlugin.backgroundImagePlus;
 
-import com.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
 import com.intellij.ide.util.PropertiesComponent;
-import com.intellij.openapi.wm.impl.IdeBackgroundUtil;
+import com.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.RejectedExecutionException;
@@ -32,7 +31,8 @@ public class BackgroundService {
         RandomBackgroundTask task = new RandomBackgroundTask();
         executor = new ScheduledThreadPoolExecutor(2, new MyThreadFactory("RandomBackgroundTask"));
         try {
-            int delay = prop.isValueSet(IdeBackgroundUtil.EDITOR_PROP) ? interval : 0;
+            // int delay = prop.isValueSet(IdeBackgroundUtil.EDITOR_PROP) ? interval : 0;
+            int delay = 0;
             TimeUnit timeUnitEnum;
             switch (timeUnit) {
                 case 0:
