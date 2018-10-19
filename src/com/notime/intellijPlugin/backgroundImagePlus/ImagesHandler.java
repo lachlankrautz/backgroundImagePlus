@@ -31,6 +31,8 @@ class ImagesHandler {
         int count = images.size();
         if (count == 0) {
             return null;
+        } else if (count == 1) {
+            return images.get(0);
         }
         Random randomGenerator = new Random();
         String image;
