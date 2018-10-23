@@ -29,7 +29,7 @@ public class BackgroundService {
             stop();
         }
         RandomBackgroundTask task = new RandomBackgroundTask();
-        executor = new ScheduledThreadPoolExecutor(2, new MyThreadFactory("RandomBackgroundTask"));
+        executor = new ScheduledThreadPoolExecutor(1, new MyThreadFactory("RandomBackgroundTask"));
         try {
             // int delay = prop.isValueSet(IdeBackgroundUtil.EDITOR_PROP) ? interval : 0;
             int delay = 0;
