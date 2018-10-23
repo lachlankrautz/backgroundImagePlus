@@ -1,8 +1,10 @@
 <idea-plugin>
     <id>com.notime.intellijPlugin.backgroundImagePlus</id>
     <name>Background Image Plus +</name>
-    <version>1.0</version>
-    <vendor email="" url="https://github.com/HNUHell/backgroundImagePlus">HNUHell</vendor>
+    <version>1.0.1-dev</version>
+    <vendor email="" url="https://github.com/HNUHell/backgroundImagePlus">
+        HNUHell
+    </vendor>
 
     <description><![CDATA[
       Set the editor background to a random picture from a folder.<br>
@@ -31,7 +33,7 @@
           <li>支持时间多样性。  Support time diversity.</li>
           <li>支持不透明度设置。  Support opacity settings</li>
         </ul>
-        <h3>Old versions from https://github.com/lachlankrautz/backgroundImagePlus (v1.2.1)</h3>
+        <h3>v1.2.1 (Old versions from https://github.com/lachlankrautz/backgroundImagePlus)</h3>
         <ul>
           <li>增加设置页。  Added settings page.</li>
           <li>增加目录项。  Added menu items.</li>
