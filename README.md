@@ -17,6 +17,7 @@ Settings -> Appearance & Behaviour -> Background Image Plus
 View: 
 - Set Background Image (set image properties : opacity/fill/anchor/flip ...)
 - Random Background Image
+- Random Order Reset (regenerate a new round of image order based on the last file path)
 - Clear Background Image (cancels "change every" interval)
 
 ![Alt text](https://github.com/HNUHell/backgroundImagePlus/blob/master/resources/screenshots/actions.png?raw=true "Title")
@@ -26,4 +27,5 @@ View:
 - Set backgrounds folder
 - Optionally set "change every" interval
 - Optionally bind "Random Background Image" action to a hotkey
+- Optionally bind "Random Order Reset" action to a hotkey
 - Cycle background images while procrastinating
