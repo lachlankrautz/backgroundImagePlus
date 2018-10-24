@@ -1,7 +1,5 @@
 package com.notime.intellijPlugin.backgroundImagePlus;
 
-import org.apache.commons.collections.CollectionUtils;
-
 import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
 import java.util.ArrayList;
@@ -27,14 +25,14 @@ public enum ImagesHandlerSingleton {
     
     public String getRandomImage(String folder) {
         // 文件夹改动或者完成了一次循环
-        if (!folder.equals(lastFolder) || CollectionUtils.isEmpty(randomImageList)) {
+        if (!folder.equals(lastFolder) || randomImageList == null || randomImageList.size() == 0) {
             randomImageList = this.getRandomImageList(folder);
         }
         lastFolder = folder;
-        while (CollectionUtils.isNotEmpty(randomImageList) && !isImage(new File(randomImageList.get(0)))) {
+        while (randomImageList != null && randomImageList.size() > 0 && !isImage(new File(randomImageList.get(0)))) {
             randomImageList.remove(0);
         }
-        return CollectionUtils.isEmpty(randomImageList) ? null : randomImageList.remove(0);
+        return randomImageList == null || randomImageList.size() == 0 ? null : randomImageList.remove(0);
     }
     
     public void resetRandomImageList() {
