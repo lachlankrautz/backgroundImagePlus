@@ -112,7 +112,9 @@
       </component>
       <component id="2f6eb" class="javax.swing.JCheckBox" binding="keepSameImageCheckBox" default-binding="true">
         <constraints>
-          <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="162" height="24"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Keep same image"/>
@@ -136,29 +138,29 @@
       </component>
       <component id="62979" class="javax.swing.JLabel">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="7" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font size="10" style="2"/>
-          <text value="You can set background images properties through "/>
-        </properties>
-      </component>
-      <component id="cfddd" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="7" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font size="10" style="2"/>
-          <text value="&quot;File | Settings | Appearance &amp; Behavior | Appearance | BACKGROUND IMAGE...&quot; button."/>
+          <font size="10" style="1"/>
+          <text value="Tips: "/>
         </properties>
       </component>
       <component id="dcb99" class="javax.swing.JLabel">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="7" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font size="10" style="2"/>
-          <text value="&quot;View | Set Background Images&quot; function or "/>
+          <font size="10" style="1"/>
+          <text value="&quot;View | Set Background Images&quot; / &quot;File | Settings | Appearance &amp; Behavior | Appearance | BACKGROUND IMAGE...&quot; "/>
+        </properties>
+      </component>
+      <component id="8ff8e" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="10" style="1"/>
+          <text value=" To set background image attributes:"/>
         </properties>
       </component>
     </children>

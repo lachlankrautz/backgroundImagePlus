@@ -1,8 +1,10 @@
 <idea-plugin>
     <id>com.notime.intellijPlugin.backgroundImagePlus</id>
     <name>Background Image Plus +</name>
-    <version>1.0</version>
-    <vendor email="" url="https://github.com/HNUHell/backgroundImagePlus">HNUHell</vendor>
+    <version>1.0.2</version>
+    <vendor email="" url="https://github.com/HNUHell/backgroundImagePlus">
+        HNUHell
+    </vendor>
 
     <description><![CDATA[
       Set the editor background to a random picture from a folder.<br>
@@ -13,12 +15,34 @@
             https://github.com/zhanglanzhu521/backgroundImagePlus<br>
     ]]></description>
 
-    <change-notes><![CDATA[
-      Added settings page.<br>
-      Added menu items.<br>
-      Repaired change function and added time diversity.<br>
-      Added Change mode.<br>
-    ]]>
+    <change-notes>
+        <![CDATA[<html>
+        <h3>1.0.2</h3>
+        <ul>
+          <li>修正定时任务运行场景（当在它的settings窗口时定时任务不再运行）。  Correct timing task runtime environment(Timed tasks are no longer running when in it's settings window).</li>
+        </ul>
+        <h3>1.0.1-dev</h3>
+        <ul>
+          <li>改变随机模式（之前为每次随机取一张，现在为将所有图片进行“洗牌”，然后一一取出，取完一轮或者改变文件目录后重新“洗牌”）。  Change the random mode(Previously, each time we randomly take one, now all the images are "shuffled" , then take them out one by one, and then "shuffle" after finishing a round or changing the file directory).</li>
+          <li>支持重新“洗牌”。  Support reshuffle.（View | Random Order Reset）</li>
+        </ul>
+        <h3>1.0</h3>
+        <ul>
+          <li>删除不透明度设置（原生支持，不需要增加此功能。见"File | Settings | Appearance & Behavior | Appearance | BACKGROUND IMAGE..."）。  Delete opacity settings(Native support，no need for this settings. See "File | Settings | Appearance & Behavior | Appearance | BACKGROUND IMAGE...").</li>
+          <li>支持变化模式设置。  Add Change mode settings.</li>
+        </ul>
+        <h3>0.9</h3>
+        <ul>
+          <li>修复自动变化的功能。   Fix automatic changes.</li>
+          <li>支持时间多样性。  Support time diversity.</li>
+          <li>支持不透明度设置。  Support opacity settings</li>
+        </ul>
+        <h3>v1.2.1 (Old versions from https://github.com/lachlankrautz/backgroundImagePlus)</h3>
+        <ul>
+          <li>增加设置页。  Added settings page.</li>
+          <li>增加目录项。  Added menu items.</li>
+        </ul>
+        </html>]]>
     </change-notes>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
@@ -40,11 +64,13 @@
         <group id="backgroundImagePlus" text="Background Image Plus" description="Background Image Plus">
             <add-to-group group-id="ViewMenu" anchor="before" relative-to-action="ToggleFullScreenGroup"/>
             <separator/>
-            <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction"
+            <action id="setBackgroundImage" class="com.notime.intellijPlugin.backgroundImagePlus.action.SetBackgroundImage"
                     text="Set Background Image"/>
             <action id="randomBackgroundImage"
                     class="com.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
                     text="Random Background Image"/>
+            <action id="randomOrderReset" class="com.notime.intellijPlugin.backgroundImagePlus.action.RandomOrderReset"
+                    text="Random Order Reset"/>
             <action id="clearBackgroundImage"
                     class="com.notime.intellijPlugin.backgroundImagePlus.action.ClearBackground"
                     text="Clear Background Image"/>

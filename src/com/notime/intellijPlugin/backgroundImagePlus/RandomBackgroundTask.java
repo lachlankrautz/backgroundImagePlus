@@ -24,9 +24,6 @@ public class RandomBackgroundTask implements Runnable {
         String folder = prop.getValue(Settings.FOLDER);
         String[] radioButton = prop.getValue(Settings.RADIO_BUTTON).split(",");
         boolean keepSameImage = prop.getBoolean(Settings.KEEP_SAME_IMAGE);
-        if (keepSameImage && radioButton.length == 2) {
-        
-        }
         String image = null;
         for (int i = 0; i < radioButton.length; i++) {
             String type = radioButton[i];
@@ -39,9 +36,8 @@ public class RandomBackgroundTask implements Runnable {
                 NotificationCenter.notice("Image folder not set");
                 return;
             }
-            String lastImage = prop.getValue(type);
-            if (!keepSameImage || i <= 0) {
-                image = imagesHandler.getRandomImage(folder, lastImage);
+            if (i == 0 || !keepSameImage) {
+                image = ImagesHandlerSingleton.instance.getRandomImage(folder);
             }
             if (image == null) {
                 NotificationCenter.notice("No image found");
@@ -50,6 +46,7 @@ public class RandomBackgroundTask implements Runnable {
             if (image.contains(",")) {
                 NotificationCenter.notice("Intellij wont load images with ',' character\n" + image);
             }
+            String lastImage = prop.getValue(type);
             if (lastImage != null && lastImage.contains(",")) {
                 prop.setValue(type, image + lastImage.substring(lastImage.indexOf(",")));
             } else {
