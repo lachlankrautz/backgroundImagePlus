@@ -19,7 +19,7 @@
         <![CDATA[<html>
         <h3>1.0.2</h3>
         <ul>
-          <li>修正定时任务运行场景（当在settings窗口时定时任务不再运行）。  Correct timing task runtime environment(Timed tasks are no longer running when in the settings window).</li>
+          <li>修正定时任务运行场景（当在它的settings窗口时定时任务不再运行）。  Correct timing task runtime environment(Timed tasks are no longer running when in it's settings window).</li>
         </ul>
         <h3>1.0.1-dev</h3>
         <ul>
