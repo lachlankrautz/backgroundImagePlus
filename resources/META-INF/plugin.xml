@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.notime.intellijPlugin.backgroundImagePlus</id>
     <name>Background Image Plus +</name>
-    <version>1.0.1-dev</version>
+    <version>1.0.2</version>
     <vendor email="" url="https://github.com/HNUHell/backgroundImagePlus">
         HNUHell
     </vendor>
