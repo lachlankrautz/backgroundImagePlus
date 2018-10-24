@@ -1,7 +1,7 @@
-# Background Image Plus
+# Background Image Plus +
 Set background random background images in Intellij editor.
 
-![Alt text](https://github.com/HNUHell/backgroundImagePlus/blob/master/resources/screenshots/example.png?raw=true "Title")
+![Alt text](./resources/screenshots/example.png?raw=true "Title")
 
 ### Settings
 
@@ -10,7 +10,7 @@ Settings -> Appearance & Behaviour -> Background Image Plus
 - Change every: Set interval to change background every x seconds/minutes/hours/days
 - Change mode: Set environment for change （if choose "both", then "Keep same image" will keep same image in both environments）
 
-![Alt text](https://github.com/HNUHell/backgroundImagePlus/blob/master/resources/screenshots/settings.png?raw=true "Title")
+![Alt text](./resources/screenshots/settings.png?raw=true "Title")
 
 ### Menu Items
 
@@ -20,7 +20,7 @@ View:
 - Random Order Reset (regenerate a new round of image order based on the last file path)
 - Clear Background Image (cancels "change every" interval)
 
-![Alt text](https://github.com/HNUHell/backgroundImagePlus/blob/master/resources/screenshots/actions.png?raw=true "Title")
+![Alt text](./resources/screenshots/actions.png?raw=true "Title")
 
 ### Usage
 

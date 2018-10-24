@@ -150,12 +150,6 @@ public class Settings implements Configurable {
         prop.setValue(TIME_UNIT, timeUnit, TIME_UNIT_DEFAULT);
         prop.setValue(RADIO_BUTTON, radioButtonText());
         intervalSpinner.setEnabled(autoChange);
-        
-        if (autoChange && interval > 0) {
-            BackgroundService.start();
-        } else {
-            BackgroundService.stop();
-        }
     }
     
     @Override
@@ -172,9 +166,20 @@ public class Settings implements Configurable {
     
     @Override
     public void disposeUIResources() {
+        // 改成关闭了设置页面的时候再启动  设置页面打开的时候设置不了背景的
+        boolean autoChange = autoChangeCheckBox.isSelected();
+        int interval = ((SpinnerNumberModel) intervalSpinner.getModel()).getNumber().intValue();
+        if (autoChange && interval > 0) {
+            BackgroundService.start();
+        } else {
+            BackgroundService.stop();
+        }
     }
     
     private void createUIComponents() {
+        // 先停止  免得设置页面打开过长时间  定时任务还一直跑  设置页面打开的时候设置不了背景的
+        BackgroundService.stop();
+        
         PropertiesComponent prop = PropertiesComponent.getInstance();
         intervalSpinner = new JSpinner(new SpinnerNumberModel(prop.getInt(INTERVAL, INTERVAL_SPINNER_DEFAULT), 0, 1000, 5));
         timeUnitBox = new ComboBox<>();

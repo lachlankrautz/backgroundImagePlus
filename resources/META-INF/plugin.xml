@@ -17,6 +17,10 @@
 
     <change-notes>
         <![CDATA[<html>
+        <h3>1.0.2</h3>
+        <ul>
+          <li>修正定时任务运行场景（当在settings窗口时定时任务不再运行）。  Correct timing task runtime environment(Timed tasks are no longer running when in the settings window).</li>
+        </ul>
         <h3>1.0.1-dev</h3>
         <ul>
           <li>改变随机模式（之前为每次随机取一张，现在为将所有图片进行“洗牌”，然后一一取出，取完一轮或者改变文件目录后重新“洗牌”）。  Change the random mode(Previously, each time we randomly take one, now all the images are "shuffled" , then take them out one by one, and then "shuffle" after finishing a round or changing the file directory).</li>
@@ -60,7 +64,7 @@
         <group id="backgroundImagePlus" text="Background Image Plus" description="Background Image Plus">
             <add-to-group group-id="ViewMenu" anchor="before" relative-to-action="ToggleFullScreenGroup"/>
             <separator/>
-            <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction"
+            <action id="setBackgroundImage" class="com.notime.intellijPlugin.backgroundImagePlus.action.SetBackgroundImage"
                     text="Set Background Image"/>
             <action id="randomBackgroundImage"
                     class="com.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
