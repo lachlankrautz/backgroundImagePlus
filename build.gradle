@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "gradle.plugin.org.jetbrains.intellij.plugins:gradle-intellij-plugin:+"
+    }
+}
+
+apply plugin: 'org.jetbrains.intellij'
+
+group 'co.notime.intellijPlugin'
+version '1.1'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven {url "http://maven.aliyun.com/nexus/content/groups/public"}
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+	version 'IC-2016.2'
+    updateSinceUntilBuild false
+}
+patchPluginXml {
+    changeNotes """
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>"""
+}
