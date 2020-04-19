@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'org.jetbrains.intellij'
 
 group 'co.notime.intellijPlugin'
-version '2.1'
+version plugin_version
 
 sourceCompatibility = 1.8
 
@@ -29,12 +29,17 @@ tasks.withType(JavaCompile) {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+def myPlugins = []
+
+if (idea_version.startsWith('2020') || idea_version.startsWith('201.')) {
+    myPlugins = ['platform-images']
+}
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-	version '2020.1'
+	version idea_version
     updateSinceUntilBuild false
-    plugins = ['platform-images']
+    plugins = myPlugins
 }
 patchPluginXml {
     changeNotes """
