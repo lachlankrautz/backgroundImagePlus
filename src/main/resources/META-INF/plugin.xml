@@ -22,6 +22,7 @@
 
     <!-- uncomment to enable plugin in all products -->
     <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.platform.images</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable groupId="appearance" groupWeight="20" id="background.image.plus"

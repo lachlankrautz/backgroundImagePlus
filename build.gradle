@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'org.jetbrains.intellij'
 
 group 'co.notime.intellijPlugin'
-version '2.0'
+version '2.1'
 
 sourceCompatibility = 1.8
 
@@ -32,8 +32,9 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-	version 'IC-2016.2'
+	version '2020.1'
     updateSinceUntilBuild false
+    plugins = ['platform-images']
 }
 patchPluginXml {
     changeNotes """
