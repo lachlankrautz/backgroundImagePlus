@@ -14,10 +14,9 @@ public class RandomOrderReset extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         ImagesHandlerSingleton.instance.resetRandomImageList();
         PropertiesComponent prop = PropertiesComponent.getInstance();
-        if (prop.getBoolean(Settings.AUTO_CHANGE, false)) {
+        if (!prop.getBoolean(Settings.AUTO_CHANGE, false)) {
+            prop.setValue(Settings.AUTO_CHANGE, true);
             BackgroundService.restart();
-        } else {
-            new RandomBackgroundTask().run();
         }
     }
 }

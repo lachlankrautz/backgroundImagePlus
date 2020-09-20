@@ -151,7 +151,7 @@
         </constraints>
         <properties>
           <font size="10" style="1"/>
-          <text value="&quot;View | Set Background Images&quot; / &quot;File | Settings | Appearance &amp; Behavior | Appearance | BACKGROUND IMAGE...&quot; "/>
+          <text value="&quot;File | Settings | Appearance &amp; Behavior | Appearance | Background Image...&quot; "/>
         </properties>
       </component>
       <component id="8ff8e" class="javax.swing.JLabel">

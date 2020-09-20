@@ -1,8 +1,8 @@
 <idea-plugin>
     <id>com.notime.intellijPlugin.backgroundImagePlus</id>
     <name>Background Image Plus +</name>
-    <version>1.0.2</version>
-    <vendor email="" url="https://github.com/HNUHell/backgroundImagePlus">
+    <version>1.0.3</version>
+    <vendor email="332643212@qq.com" url="https://github.com/HNUHell/backgroundImagePlus">
         HNUHell
     </vendor>
 
@@ -17,6 +17,13 @@
 
     <change-notes>
         <![CDATA[<html>
+        <h3>1.0.3</h3>
+        <ul>
+          <li>适配IDEA 2020版本（移除View菜单下Set Background Image功能）。  Adapt to idea 2020（Remove the "Set Background Image" function from the "View" menu）.</li>
+          <li>合并插件菜单。  Action to group.</li>
+          <li>优化”洗牌“功能，启动自动切换。  Improve reshuffle function to start auto switch.</li>
+          <li>其它描述信息调整。   Other description information adjustment.</li>
+        </ul>
         <h3>1.0.2</h3>
         <ul>
           <li>修正定时任务运行场景（当在它的settings窗口时定时任务不再运行）。  Correct timing task runtime environment(Timed tasks are no longer running when in it's settings window).</li>
@@ -61,19 +68,22 @@
     </extensions>
 
     <actions>
-        <group id="backgroundImagePlus" text="Background Image Plus" description="Background Image Plus">
-            <add-to-group group-id="ViewMenu" anchor="before" relative-to-action="ToggleFullScreenGroup"/>
-            <separator/>
-            <action id="setBackgroundImage" class="com.notime.intellijPlugin.backgroundImagePlus.action.SetBackgroundImage"
-                    text="Set Background Image"/>
-            <action id="randomBackgroundImage"
-                    class="com.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
-                    text="Random Background Image"/>
-            <action id="randomOrderReset" class="com.notime.intellijPlugin.backgroundImagePlus.action.RandomOrderReset"
-                    text="Random Order Reset"/>
-            <action id="clearBackgroundImage"
-                    class="com.notime.intellijPlugin.backgroundImagePlus.action.ClearBackground"
-                    text="Clear Background Image"/>
+        <action id="randomBackgroundImage"
+                class="com.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
+                text="Random Background Image">
+        </action>
+        <action id="randomOrderReset" class="com.notime.intellijPlugin.backgroundImagePlus.action.RandomOrderReset"
+                text="Random Order Reset">
+        </action>
+        <action id="clearBackgroundImage"
+                class="com.notime.intellijPlugin.backgroundImagePlus.action.ClearBackground"
+                text="Clear Background Image">
+        </action>
+        <group id="backgroundImagePlus" text="Background Image Plus" description="Background Image Plus" popup="true">
+            <reference ref="randomBackgroundImage"/>
+            <reference ref="randomOrderReset"/>
+            <reference ref="clearBackgroundImage"/>
+            <add-to-group group-id="ViewMenu" anchor="last"/>
         </group>
     </actions>
 

@@ -36,7 +36,10 @@ public enum ImagesHandlerSingleton {
     }
     
     public void resetRandomImageList() {
-        randomImageList = lastFolder == null ? null : this.getRandomImageList(lastFolder);
+        if (randomImageList != null) {
+            // 改成只做清空处理，等下次运行时就会重新调用getRandomImageList进行生成的，相当于把所有图片都洗牌了
+            randomImageList.clear();
+        }
     }
     
     private List<String> getRandomImageList(String folder) {
@@ -46,7 +49,7 @@ public enum ImagesHandlerSingleton {
         List<String> images = new ArrayList<>();
         collectImages(images, folder);
         Collections.shuffle(images);
-        return images;
+        return Collections.synchronizedList(images);
     }
     
     private void collectImages(List<String> images, String folder) {
