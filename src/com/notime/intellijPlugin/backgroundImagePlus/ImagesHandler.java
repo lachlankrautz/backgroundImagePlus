@@ -1,4 +1,4 @@
-package co.notime.intellijPlugin.backgroundImagePlus;
+package com.notime.intellijPlugin.backgroundImagePlus;
 
 import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
@@ -11,18 +11,18 @@ import java.util.Random;
  * Date:   07/05/17
  */
 class ImagesHandler {
-
+    
     private MimetypesFileTypeMap typeMap;
-
+    
     ImagesHandler() {
         typeMap = new MimetypesFileTypeMap();
     }
-
+    
     /**
      * @param folder folder to search for images
      * @return random image or null
      */
-    String getRandomImage(String folder) {
+    String getRandomImage(String folder, String lastImage) {
         if (folder.isEmpty()) {
             return null;
         }
@@ -31,12 +31,18 @@ class ImagesHandler {
         int count = images.size();
         if (count == 0) {
             return null;
+        } else if (count == 1) {
+            return images.get(0);
         }
         Random randomGenerator = new Random();
-        int index = randomGenerator.nextInt(images.size());
-        return images.get(index);
+        String image;
+        do {
+            int index = randomGenerator.nextInt(images.size());
+            image = images.get(index);
+        } while (lastImage != null && lastImage.split(",")[0].equals(image));
+        return image;
     }
-
+    
     private void collectImages(List<String> images, String folder) {
         File root = new File(folder);
         if (!root.exists()) {
@@ -46,7 +52,7 @@ class ImagesHandler {
         if (list == null) {
             return;
         }
-
+        
         for (File f : list) {
             if (f.isDirectory()) {
                 collectImages(images, f.getAbsolutePath());
@@ -58,10 +64,10 @@ class ImagesHandler {
             }
         }
     }
-
+    
     private boolean isImage(File file) {
         String[] parts = typeMap.getContentType(file).split("/");
-        return parts.length != 0 && parts[0].equals("image");
+        return parts.length != 0 && "image".equals(parts[0]);
     }
-
+    
 }
