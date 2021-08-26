@@ -18,7 +18,7 @@ version plugin_version
 sourceCompatibility = 1.8
 
 repositories {
-    maven {url "http://maven.aliyun.com/nexus/content/groups/public"}
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
     mavenCentral()
 }
 
@@ -31,13 +31,15 @@ dependencies {
 }
 def myPlugins = []
 
-if (idea_version.startsWith('2020') || idea_version.startsWith('201.')) {
+def ideaVersion = Integer.valueOf(idea_version.split("[.]")[0])
+
+if (ideaVersion >= 2020 || (ideaVersion >= 201 && ideaVersion < 1000)) {
     myPlugins = ['platform-images']
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-	version idea_version
+    version idea_version
     updateSinceUntilBuild false
     plugins = myPlugins
 }
