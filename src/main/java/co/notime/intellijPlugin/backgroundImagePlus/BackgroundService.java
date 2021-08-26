@@ -33,7 +33,7 @@ public class BackgroundService {
             stop();
         }
         service = makeScheduledExecutorService();
-        RandomBackgroundTaskKt task = RandomBackgroundTaskKt.Companion.getInstance();
+        RandomBackgroundTaskKt task = new RandomBackgroundTaskKt();
         try {
             int delay = prop.isValueSet(IdeBackgroundUtil.EDITOR_PROP)
                     ? interval
