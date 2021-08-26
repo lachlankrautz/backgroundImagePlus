@@ -15,9 +15,10 @@ public class BackgroundService {
 
     private static ScheduledExecutorService service;
 
-    static {
-        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("BackgroundService-%d").build();
-        service = new ScheduledThreadPoolExecutor(1, namedThreadFactory);
+    private static ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("BackgroundService-%d").build();
+
+    private static ScheduledExecutorService makeScheduledExecutorService() {
+        return new ScheduledThreadPoolExecutor(1, namedThreadFactory);
     }
 
     private static int runningInterval = 0;
@@ -31,6 +32,7 @@ public class BackgroundService {
         if (service != null) {
             stop();
         }
+        service = makeScheduledExecutorService();
         RandomBackgroundTaskKt task = RandomBackgroundTaskKt.Companion.getInstance();
         try {
             int delay = prop.isValueSet(IdeBackgroundUtil.EDITOR_PROP)
@@ -47,6 +49,7 @@ public class BackgroundService {
         if (service != null && !service.isTerminated()) {
             service.shutdownNow();
         }
+        service = null;
         runningInterval = 0;
     }
 
