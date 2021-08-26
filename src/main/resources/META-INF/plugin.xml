@@ -36,9 +36,11 @@
             <separator/>
             <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction"
                     text="Set Background Image"/>
-            <action id="randomBackgroundImage" class="co.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
+            <action id="randomBackgroundImage"
+                    class="co.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
                     text="Random Background Image"/>
-            <action id="clearBackgroundImage" class="co.notime.intellijPlugin.backgroundImagePlus.action.ClearBackground"
+            <action id="clearBackgroundImage"
+                    class="co.notime.intellijPlugin.backgroundImagePlus.action.ClearBackground"
                     text="Clear Background Image"/>
         </group>
     </actions>

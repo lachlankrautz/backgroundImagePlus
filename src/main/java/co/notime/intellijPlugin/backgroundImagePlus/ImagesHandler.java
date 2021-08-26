@@ -61,7 +61,7 @@ class ImagesHandler {
 
     private boolean isImage(File file) {
         String[] parts = typeMap.getContentType(file).split("/");
-        return parts.length != 0 && parts[0].equals("image");
+        return parts.length != 0 && "image".equals(parts[0]);
     }
 
 }

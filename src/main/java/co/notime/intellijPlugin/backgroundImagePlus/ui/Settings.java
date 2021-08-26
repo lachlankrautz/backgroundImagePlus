@@ -95,7 +95,7 @@ public class Settings implements Configurable {
         return storedInterval != uiInterval;
     }
 
-    private boolean opacityModified(PropertiesComponent prop){
+    private boolean opacityModified(PropertiesComponent prop) {
         int opacity = ((SpinnerNumberModel) opacitySpinner.getModel()).getNumber().intValue();
         int storedOpacity = prop.getInt(OPACITY, 15);
         return storedOpacity != opacity;

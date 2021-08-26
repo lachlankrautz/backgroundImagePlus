@@ -13,6 +13,7 @@ import com.intellij.openapi.wm.impl.IdeBackgroundUtil;
  */
 public class ClearBackground extends AnAction {
 
+    @Override
     public void actionPerformed(AnActionEvent e) {
         PropertiesComponent prop = PropertiesComponent.getInstance();
         prop.setValue(IdeBackgroundUtil.EDITOR_PROP, null);

@@ -3,6 +3,7 @@ package co.notime.intellijPlugin.backgroundImagePlus;
 import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.wm.impl.IdeBackgroundUtil;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
@@ -17,7 +18,7 @@ public class BackgroundService {
     private static ScheduledExecutorService service = null;
     private static int runningInterval = 0;
 
-    public static void start () {
+    public static void start() {
         PropertiesComponent prop = PropertiesComponent.getInstance();
         int interval = prop.getInt(Settings.INTERVAL, 0);
         if (runningInterval == interval || interval == 0) {
@@ -39,7 +40,7 @@ public class BackgroundService {
         }
     }
 
-    public static void stop () {
+    public static void stop() {
         if (service != null && !service.isTerminated()) {
             service.shutdownNow();
         }
@@ -47,7 +48,7 @@ public class BackgroundService {
         runningInterval = 0;
     }
 
-    public static void restart () {
+    public static void restart() {
         stop();
         start();
     }
