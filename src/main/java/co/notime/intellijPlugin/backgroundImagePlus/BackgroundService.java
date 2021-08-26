@@ -1,13 +1,11 @@
 package co.notime.intellijPlugin.backgroundImagePlus;
 
 import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.wm.impl.IdeBackgroundUtil;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.RejectedExecutionException;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * Author: Lachlan Krautz
@@ -15,7 +13,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class BackgroundService {
 
-    private static ScheduledExecutorService service = null;
+    private static ScheduledExecutorService service;
+
+    static {
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("BackgroundService-%d").build();
+        service = new ScheduledThreadPoolExecutor(1, namedThreadFactory);
+    }
+
     private static int runningInterval = 0;
 
     public static void start() {
@@ -27,8 +31,7 @@ public class BackgroundService {
         if (service != null) {
             stop();
         }
-        RandomBackgroundTask task = new RandomBackgroundTask();
-        service = Executors.newSingleThreadScheduledExecutor();
+        RandomBackgroundTaskKt task = RandomBackgroundTaskKt.Companion.getInstance();
         try {
             int delay = prop.isValueSet(IdeBackgroundUtil.EDITOR_PROP)
                     ? interval
@@ -44,7 +47,6 @@ public class BackgroundService {
         if (service != null && !service.isTerminated()) {
             service.shutdownNow();
         }
-        service = null;
         runningInterval = 0;
     }
 
