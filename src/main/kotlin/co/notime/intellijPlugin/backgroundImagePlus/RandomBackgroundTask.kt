@@ -3,6 +3,7 @@ package co.notime.intellijPlugin.backgroundImagePlus
 import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings
 import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.wm.impl.IdeBackgroundUtil
+import java.awt.EventQueue
 import java.io.File
 
 class RandomBackgroundTask : Runnable {
@@ -41,10 +42,9 @@ class RandomBackgroundTask : Runnable {
         //默认透明度设为25
         prop.setValue(IdeBackgroundUtil.FRAME_PROP, "$image,$opacity")
         prop.setValue(IdeBackgroundUtil.EDITOR_PROP, "$image,$opacity")
-        try {
+        // 添加相关事件
+        EventQueue.invokeLater {
             IdeBackgroundUtil.repaintAllWindows()
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 
