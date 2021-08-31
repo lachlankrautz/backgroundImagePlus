@@ -3,7 +3,6 @@ package co.notime.intellijPlugin.backgroundImagePlus
 import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings
 import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.wm.impl.IdeBackgroundUtil
-import org.slf4j.LoggerFactory
 import java.io.File
 
 class RandomBackgroundTask : Runnable {
@@ -45,7 +44,7 @@ class RandomBackgroundTask : Runnable {
         try {
             IdeBackgroundUtil.repaintAllWindows()
         } catch (e: Exception) {
-            LoggerFactory.getLogger(javaClass).error("切换图片异常！", e)
+            e.printStackTrace()
         }
     }
 

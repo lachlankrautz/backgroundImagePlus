@@ -32,7 +32,6 @@ public class BackgroundService {
         if (service != null) {
             stop();
         }
-//        service = Executors.newSingleThreadScheduledExecutor();
         service = makeScheduledExecutorService();
         RandomBackgroundTask task = new RandomBackgroundTask();
         try {
