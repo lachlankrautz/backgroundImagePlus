@@ -1,7 +1,7 @@
 package co.notime.intellijPlugin.backgroundImagePlus.action;
 
 import co.notime.intellijPlugin.backgroundImagePlus.BackgroundService;
-import co.notime.intellijPlugin.backgroundImagePlus.RandomBackgroundTaskKt;
+import co.notime.intellijPlugin.backgroundImagePlus.RandomBackgroundTask;
 import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -24,7 +24,7 @@ public class RandomBackground extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent evt) {
         PropertiesComponent prop = PropertiesComponent.getInstance();
-        RandomBackgroundTaskKt.Companion.getInstance().run();
+        RandomBackgroundTask.Companion.getInstance().run();
         if (prop.getBoolean(Settings.AUTO_CHANGE, false)) {
             BackgroundService.restart();
         }

@@ -3,9 +3,10 @@ package co.notime.intellijPlugin.backgroundImagePlus
 import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings
 import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.wm.impl.IdeBackgroundUtil
+import org.slf4j.LoggerFactory
 import java.io.File
 
-class RandomBackgroundTaskKt : Runnable {
+class RandomBackgroundTask : Runnable {
 
     private val imagesHandler: ImagesHandler = ImagesHandler()
 
@@ -41,10 +42,14 @@ class RandomBackgroundTaskKt : Runnable {
         //默认透明度设为25
         prop.setValue(IdeBackgroundUtil.FRAME_PROP, "$image,$opacity")
         prop.setValue(IdeBackgroundUtil.EDITOR_PROP, "$image,$opacity")
-        IdeBackgroundUtil.repaintAllWindows()
+        try {
+            IdeBackgroundUtil.repaintAllWindows()
+        } catch (e: Exception) {
+            LoggerFactory.getLogger(javaClass).error("切换图片异常！", e)
+        }
     }
 
     companion object {
-        val instance: RandomBackgroundTaskKt by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { RandomBackgroundTaskKt() }
+        val instance: RandomBackgroundTask by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { RandomBackgroundTask() }
     }
 }
