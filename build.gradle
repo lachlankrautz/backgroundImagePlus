@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath "gradle.plugin.org.jetbrains.intellij.plugins:gradle-intellij-plugin:+"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
     }
 }
 
@@ -29,6 +29,8 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-common"
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 def myPlugins = []
@@ -47,6 +49,6 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
-      Add change notes here.<br>
+      引入kotlin，重构部分代码.<br>
       <em>most HTML tags may be used</em>"""
 }
