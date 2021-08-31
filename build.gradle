@@ -49,6 +49,6 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
-      引入kotlin，重构部分代码.<br>
-      <em>most HTML tags may be used</em>"""
+      引入kotlin，重构代码.<br>
+      修复EDT异常<br>"""
 }
