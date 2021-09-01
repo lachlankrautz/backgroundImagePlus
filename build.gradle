@@ -66,7 +66,7 @@ intellij {
 
     publishPlugin {
         username publishUsername
-        token = System.getenv().getOrDefault("ORG_GRADLE_PROJECT_intellijPublishToken", publishToken)
+        token = ORG_GRADLE_PROJECT_intellijPublishToken
         channels publishChannel
     }
 }
