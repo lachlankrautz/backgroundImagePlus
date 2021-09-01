@@ -1,6 +1,6 @@
-package co.notime.intellijPlugin.backgroundImagePlus.ui
+package com.godfather1103.intellijPlugin.backgroundImagePlus.ui
 
-import co.notime.intellijPlugin.backgroundImagePlus.BackgroundService
+import com.godfather1103.intellijPlugin.backgroundImagePlus.BackgroundService
 import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory
 import com.intellij.openapi.options.Configurable

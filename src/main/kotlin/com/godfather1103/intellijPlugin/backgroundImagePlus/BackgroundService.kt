@@ -1,6 +1,6 @@
-package co.notime.intellijPlugin.backgroundImagePlus
+package com.godfather1103.intellijPlugin.backgroundImagePlus
 
-import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings
+import com.godfather1103.intellijPlugin.backgroundImagePlus.ui.Settings
 import com.google.common.util.concurrent.ThreadFactoryBuilder
 import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.wm.impl.IdeBackgroundUtil

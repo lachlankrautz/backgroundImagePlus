@@ -1,10 +1,9 @@
 <idea-plugin>
-    <id>co.notime.intellijPlugin.backgroundImagePlus</id>
+    <id>com.godfather1103.intellijPlugin</id>
     <name>Background Image Plus</name>
     <vendor email="chuchuanbao@gmail.com" url="https://github.com/godfather1103">Jack Chu</vendor>
 
     <description><![CDATA[
-
 <h2>English Readme：</h2>
 <p>Set the editor background to a random picture from a folder.</p>
 <p>The plug-in is based on <a href="https://plugins.jetbrains.com/plugin/8502-background-image-plus">Background Image Plus</a></p>
@@ -19,10 +18,8 @@
 Your gift will help me to contribute better, thank you!
 
 <a href="https://paypal.me/godfather1103?locale.x=zh_XC">PayPal</a>
-
 支付宝(Alipay)
 <img src="https://ae04.alicdn.com/kf/U4f9b6b08999a4e2f9ccd2ca74cd75c1bP.jpg" alt="支付宝" width="200" height="300" align="bottom" />
-
 微信(WeChat)
 <img src="https://s.pc.qq.com/tousu/img/20200815/9185636_1597474776.jpg" alt="微信支付" width="300" height="320" align="bottom" />
 </pre>
@@ -47,7 +44,7 @@ Your gift will help me to contribute better, thank you!
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable groupId="appearance" groupWeight="20" id="background.image.plus"
                                  displayName="Background Image Plus"
-                                 instance="co.notime.intellijPlugin.backgroundImagePlus.ui.Settings"/>
+                                 instance="com.godfather1103.intellijPlugin.backgroundImagePlus.ui.Settings"/>
     </extensions>
 
     <actions>
@@ -57,10 +54,10 @@ Your gift will help me to contribute better, thank you!
             <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction"
                     text="Set Background Image"/>
             <action id="randomBackgroundImage"
-                    class="co.notime.intellijPlugin.backgroundImagePlus.action.RandomBackground"
+                    class="com.godfather1103.intellijPlugin.backgroundImagePlus.action.RandomBackground"
                     text="Random Background Image"/>
             <action id="clearBackgroundImage"
-                    class="co.notime.intellijPlugin.backgroundImagePlus.action.ClearBackground"
+                    class="com.godfather1103.intellijPlugin.backgroundImagePlus.action.ClearBackground"
                     text="Clear Background Image"/>
         </group>
     </actions>

@@ -1,4 +1,4 @@
-package co.notime.intellijPlugin.backgroundImagePlus
+package com.godfather1103.intellijPlugin.backgroundImagePlus
 
 import com.intellij.notification.Notification
 import com.intellij.notification.NotificationType
