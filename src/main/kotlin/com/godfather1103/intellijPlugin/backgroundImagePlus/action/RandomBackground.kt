@@ -1,8 +1,8 @@
-package co.notime.intellijPlugin.backgroundImagePlus.action
+package com.godfather1103.intellijPlugin.backgroundImagePlus.action
 
-import co.notime.intellijPlugin.backgroundImagePlus.BackgroundService
-import co.notime.intellijPlugin.backgroundImagePlus.RandomBackgroundTask.Companion.instance
-import co.notime.intellijPlugin.backgroundImagePlus.ui.Settings
+import com.godfather1103.intellijPlugin.backgroundImagePlus.BackgroundService
+import com.godfather1103.intellijPlugin.backgroundImagePlus.RandomBackgroundTask.Companion.instance
+import com.godfather1103.intellijPlugin.backgroundImagePlus.ui.Settings
 import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent

@@ -14,10 +14,10 @@ buildscript {
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: "org.jetbrains.kotlin.jvm"
 
-group 'co.notime.intellijPlugin'
-version plugin_version
+group pluginGroup
+version pluginVersion
 
-sourceCompatibility = 1.8
+sourceCompatibility = javaVersion
 
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
@@ -35,20 +35,38 @@ dependencies {
 }
 def myPlugins = []
 
-def ideaVersion = Integer.valueOf(idea_version.split("[.]")[0])
+def idea_version = Integer.valueOf(ideaVersion.split("[.]")[0])
 
-if (ideaVersion >= 2020 || (ideaVersion >= 201 && ideaVersion < 1000)) {
+if (idea_version >= 2020 || (idea_version >= 201 && idea_version < 1000)) {
     myPlugins = ['platform-images']
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version idea_version
+    version ideaVersion
+    type ideaType
+    downloadSources Boolean.valueOf(sources)
+    sameSinceUntilBuild Boolean.valueOf(isEAP)
+    alternativeIdePath idePath
     updateSinceUntilBuild false
     plugins = myPlugins
-}
-patchPluginXml {
-    changeNotes """
-      引入kotlin，重构代码.<br>
-      修复EDT异常<br>"""
+    patchPluginXml {
+        sinceBuild pluginSinceBuild
+        untilBuild pluginUntilBuild
+        changeNotes """
+            <ul>
+            3.1
+            <li>修复EDT异常</li>
+            <li>Fix EDT Error</li>
+            <li>使用kotlin重构代码.</li>
+            <li>refactor code by kotlin</li>
+            </ul>
+            """
+    }
+
+    publishPlugin {
+        username publishUsername
+        token = ORG_GRADLE_PROJECT_intellijPublishToken
+        channels publishChannel
+    }
 }

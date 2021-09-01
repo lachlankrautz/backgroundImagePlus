@@ -1,4 +1,4 @@
-package co.notime.intellijPlugin.backgroundImagePlus
+package com.godfather1103.intellijPlugin.backgroundImagePlus
 
 import java.io.File
 import java.util.*
