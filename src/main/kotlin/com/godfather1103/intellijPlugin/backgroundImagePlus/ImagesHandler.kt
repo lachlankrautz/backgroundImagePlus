@@ -1,16 +1,14 @@
 package com.godfather1103.intellijPlugin.backgroundImagePlus
 
 import java.io.File
+import java.nio.file.Files
 import java.util.*
-import javax.activation.MimetypesFileTypeMap
 
 /**
  * Author: Allan de Queiroz
  * Date:   07/05/17
  */
 internal class ImagesHandler {
-
-    private val typeMap: MimetypesFileTypeMap = MimetypesFileTypeMap()
 
     /**
      * @param folder folder to search for images
@@ -50,8 +48,10 @@ internal class ImagesHandler {
     }
 
     private fun isImage(file: File): Boolean {
-        val parts = typeMap.getContentType(file).split("/".toRegex()).toTypedArray()
-        return parts.size != 0 && "image" == parts[0]
+        val s = Files
+            .probeContentType(file.toPath()) ?: ""
+        val parts = s.split("/".toRegex()).toTypedArray()
+        return parts.isNotEmpty() && "image" == parts[0]
     }
 
 }
