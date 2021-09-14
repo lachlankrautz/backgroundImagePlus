@@ -55,6 +55,11 @@ intellij {
         untilBuild pluginUntilBuild
         changeNotes """
             <ul>
+            3.2
+            <li>移除MimetypesFileTypeMap</li>
+            <li>Remove MimetypesFileTypeMap</li>
+            </ul>
+            <ul>
             3.1
             <li>修复EDT异常</li>
             <li>Fix EDT Error</li>
