@@ -55,6 +55,11 @@ intellij {
         untilBuild pluginUntilBuild
         changeNotes """
             <ul>
+            3.2.1
+            <li>修复配图</li>
+            <li>replace picture</li>
+            </ul>
+            <ul>
             3.2
             <li>移除MimetypesFileTypeMap</li>
             <li>Remove MimetypesFileTypeMap</li>
