@@ -1,0 +1,82 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "gradle.plugin.org.jetbrains.intellij.plugins:gradle-intellij-plugin:+"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
+    }
+}
+
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: "org.jetbrains.kotlin.jvm"
+
+group pluginGroup
+version pluginVersion
+
+sourceCompatibility = javaVersion
+
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-common"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+def myPlugins = []
+
+def idea_version = Integer.valueOf(ideaVersion.split("[.]")[0])
+
+if (idea_version >= 2020 || (idea_version >= 201 && idea_version < 1000)) {
+    myPlugins = ['platform-images']
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version ideaVersion
+    type ideaType
+    downloadSources Boolean.valueOf(sources)
+    sameSinceUntilBuild Boolean.valueOf(isEAP)
+    alternativeIdePath idePath
+    updateSinceUntilBuild false
+    plugins = myPlugins
+    patchPluginXml {
+        sinceBuild pluginSinceBuild
+        untilBuild pluginUntilBuild
+        changeNotes """
+            <ul>
+            3.2.1
+            <li>修复配图</li>
+            <li>replace picture</li>
+            </ul>
+            <ul>
+            3.2
+            <li>移除MimetypesFileTypeMap</li>
+            <li>Remove MimetypesFileTypeMap</li>
+            </ul>
+            <ul>
+            3.1
+            <li>修复EDT异常</li>
+            <li>Fix EDT Error</li>
+            <li>使用kotlin重构代码.</li>
+            <li>refactor code by kotlin</li>
+            </ul>
+            """
+    }
+
+    publishPlugin {
+        username publishUsername
+        token = ORG_GRADLE_PROJECT_intellijPublishToken
+        channels publishChannel
+    }
+}

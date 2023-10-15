@@ -1,0 +1,66 @@
+<idea-plugin>
+    <id>com.godfather1103.intellijPlugin</id>
+    <name>Background Image Plus</name>
+    <vendor email="chuchuanbao@gmail.com" url="https://github.com/godfather1103">Jack Chu</vendor>
+
+    <description><![CDATA[
+<h2>English Readme：</h2>
+<p>Set the editor background to a random picture from a folder.</p>
+<p>The plug-in is based on <a href="https://plugins.jetbrains.com/plugin/8502-background-image-plus">Background Image Plus</a></p>
+
+<h2>中文说明：</h2>
+<p>给编辑器添加图片背景，将编辑器背景设置为文件夹中的随机图片。</p>
+<p>该插件是在<a href="https://plugins.jetbrains.com/plugin/8502-background-image-plus">Background Image Plus</a>的基础上开发完成</p>
+
+<h2>捐赠(Donate)</h2>
+<pre>
+你的馈赠将助力我更好的去贡献，谢谢！
+Your gift will help me to contribute better, thank you!
+
+<a href="https://paypal.me/godfather1103?locale.x=zh_XC">PayPal</a>
+支付宝(Alipay)
+<img src="https://plugins.jetbrains.com/files/17512/screenshot_434da076-114d-435c-a832-a86584ff29db" alt="支付宝" width="200" height="300" align="bottom" />
+<img src="https://plugins.jetbrains.com/files/17512/screenshot_96f642c8-e168-4141-a29c-78166dc61ac5" alt="支付宝" width="200" height="300" align="bottom" />
+微信(WeChat)
+<img src="https://plugins.jetbrains.com/files/17512/screenshot_da480b29-acfa-47dd-b9fe-d8c9ce1f624b" alt="微信支付" width="300" height="320" align="bottom" />
+</pre>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      Added settings page<br>
+      Added menu items
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="162"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+
+    <!-- uncomment to enable plugin in all products -->
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.platform.images</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable groupId="appearance" groupWeight="20" id="background.image.plus"
+                                 displayName="Background Image Plus"
+                                 instance="com.godfather1103.intellijPlugin.backgroundImagePlus.ui.Settings"/>
+    </extensions>
+
+    <actions>
+        <group id="backgroundImagePlus" text="Background Image Plus" description="Background Image Plus">
+            <add-to-group group-id="ViewMenu" anchor="before" relative-to-action="ToggleFullScreenGroup"/>
+            <separator/>
+            <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction"
+                    text="Set Background Image"/>
+            <action id="randomBackgroundImage"
+                    class="com.godfather1103.intellijPlugin.backgroundImagePlus.action.RandomBackground"
+                    text="Random Background Image"/>
+            <action id="clearBackgroundImage"
+                    class="com.godfather1103.intellijPlugin.backgroundImagePlus.action.ClearBackground"
+                    text="Clear Background Image"/>
+        </group>
+    </actions>
+
+</idea-plugin>
